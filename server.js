@@ -27,12 +27,19 @@ const port = 3030;
 const server = app.listen(port, ()=>{console.log(`server is running on: ${port}`)});
 
 // Add a GET route that returns the projectData object 
-app.get('/', function (req, res){
+app.get('/page1', function (req, res){
     res.send(projectData);
   
 })
 
 // add a POST route that adds incoming data to projectData
-app.post('/', function (req, res){
-    res.send
+app.post('/page2', function (req, res){
+    console.log(req.body);
+    userEntry = {
+        temperature : req.body.temp,
+        date : req.body.date,
+        user_response : content
+    }
+    projectData = userEntry;
 })
+
