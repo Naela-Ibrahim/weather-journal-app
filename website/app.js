@@ -1,36 +1,66 @@
 /* Global Variables */
 
 // Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // My API key to get data from openweathermap API
-let base_url = 'http://api.openweathermap.org/data/2.5/forecast?zip=';
-let myCredentials = 'APPID=4f5f3648f8770e528fc0839350ab9d41';
+
+let myApiKey = '4f5f3648f8770e528fc0839350ab9d41';
 
 // Add event listener to the 'generate' button
 // First get the 'generate' button and store it in a variable
 const generateButton = document.getElementById('generate');
 generateButton.addEventListener('click', doWhenClick)
 
-const postData = async ( url = '', data = {})=>{
-    console.log(data);
-      const response = await fetch(url, {
+
+async function doWhenClick (){
+
+    let d = new Date();
+    let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+
+    // Get values of zip and user feelings values  
+    const zipCode = document.getElementById('zip').value;
+
+    let base_url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${myApiKey}&units=metric`;
+    const userFeel = document.getElementById('feelings').value;
+    const response = await fetch(base_url);
+    const dataRecievedFromExApi = await response.json();
+    const temperature = dataRecievedFromExApi.main.temp;
+
+    //console.log(temperature)
+    
+                             
+}
+
+
+const postData = async ( url = '', projectData = {})=>{
+    console.log(projectData);
+      const response = await fetch('/saveRecievedData', {
       method: 'POST', 
       credentials: 'same-origin',
       headers: {
           'Content-Type': 'application/json',
       },
+      
            
-      body: JSON.stringify(data), 
+      body: JSON.stringify(projectData = {
+        temp : temperature,
+        date : newDate,
+        content: userFeel
+      })
+
+
     });
 
-      try {
-        const newData = await response.json();
-        console.log(newData);
-        return newData;
-      }catch(error) {
-      console.log("error", error);
-      }
+   
+    
   }
+
+  postData({body:{temp : temperature,
+    date : newDate,
+    content: userFeel}})
+
+
+  
+
+
 

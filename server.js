@@ -27,19 +27,30 @@ const port = 3030;
 const server = app.listen(port, ()=>{console.log(`server is running on: ${port}`)});
 
 // Add a GET route that returns the projectData object 
-app.get('/page1', function (req, res){
+app.get('/tempData', function (req, res){
     res.send(projectData);
   
 })
 
-// add a POST route that adds incoming data to projectData
-app.post('/page2', function (req, res){
-    console.log(req.body);
-    userEntry = {
-        temperature : req.body.temp,
-        date : req.body.date,
-        user_response : content
-    }
-    projectData = userEntry;
+//add a POST route that adds incoming data to projectData
+app.post('/saveRecievedData', function (req, res){
+   
+    console.log(req.body)
+     
+    projectData.temp = req.body.temp,
+    projectData.date = req.body.date,
+    projectData.content = req.body.content,
+    
+
+    res.end()
+    
 })
+
+
+
+app.get('/tempData', function (req, res){
+    res.send(postData)
+})
+
+
 
