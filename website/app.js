@@ -48,18 +48,13 @@ const postData = async ( url = '', projectData = {})=>{
       headers: {
           'Content-Type': 'application/json',
       },
-      
            
       body: JSON.stringify(objData)
-
-
     });
 
-   
-    
   }
 
-  postData
+postData
 
 
   
