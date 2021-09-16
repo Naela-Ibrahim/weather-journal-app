@@ -1,19 +1,21 @@
 /* Global Variables */
 
-// Create a new date instance dynamically with JS
+
 
 // My API key to get data from openweathermap API
 
 let myApiKey = '4f5f3648f8770e528fc0839350ab9d41';
 
-// Add event listener to the 'generate' button
-// First get the 'generate' button and store it in a variable
+
+// Get the 'generate' button and store it in a variable
 const generateButton = document.getElementById('generate');
+
+
 generateButton.addEventListener('click', doWhenClick)
 
-
+// Fetch 
 async function doWhenClick (){
-
+    // Create a new date instance dynamically with JS
     let d = new Date();
     let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
@@ -25,8 +27,14 @@ async function doWhenClick (){
     const response = await fetch(base_url);
     const dataRecievedFromExApi = await response.json();
     const temperature = dataRecievedFromExApi.main.temp;
+    const objData = {
+      date : newDate,
+      temp : temperature,
+      content : userFeel,
+      message : "Have a great day !"
+    }
 
-    //console.log(temperature)
+    console.log(objData)
     
                              
 }
@@ -42,11 +50,7 @@ const postData = async ( url = '', projectData = {})=>{
       },
       
            
-      body: JSON.stringify(projectData = {
-        temp : temperature,
-        date : newDate,
-        content: userFeel
-      })
+      body: JSON.stringify(objData)
 
 
     });
@@ -55,12 +59,7 @@ const postData = async ( url = '', projectData = {})=>{
     
   }
 
-  postData({body:{temp : temperature,
-    date : newDate,
-    content: userFeel}})
+  postData
 
 
   
-
-
-
