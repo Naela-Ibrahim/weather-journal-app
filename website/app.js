@@ -13,7 +13,7 @@ const generateButton = document.getElementById('generate');
 
 generateButton.addEventListener('click', doWhenClick)
 
-// Fetch 
+// Fetch data from ex API and store it in variables and create objData object with fetched data
 async function doWhenClick (){
     // Create a new date instance dynamically with JS
     let d = new Date();
@@ -21,9 +21,9 @@ async function doWhenClick (){
 
     // Get values of zip and user feelings values  
     const zipCode = document.getElementById('zip').value;
+    const userFeel = document.getElementById('feelings').value;
 
     let base_url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${myApiKey}&units=metric`;
-    const userFeel = document.getElementById('feelings').value;
     const response = await fetch(base_url);
     const dataRecievedFromExApi = await response.json();
     const temperature = dataRecievedFromExApi.main.temp;
@@ -39,7 +39,7 @@ async function doWhenClick (){
                              
 }
 
-
+// Fetch data and stringify it and send to server
 const postData = async ( url = '', projectData = {})=>{
     console.log(projectData);
       const response = await fetch('/saveRecievedData', {
