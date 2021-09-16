@@ -32,14 +32,12 @@ app.get('/proData', function (req, res){
   
 })
 
-//add a POST route that adds incoming data to projectData
+//Add a POST route that adds incoming data to projectData
 app.post('/saveRecievedData', function (req, res){
-   
+   req.body = projectData
     console.log(req.body)
      
-    projectData.temp = req.body.temp,
-    projectData.date = req.body.date,
-    projectData.content = req.body.content,
+    
     
 
     res.end()
