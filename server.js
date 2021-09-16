@@ -45,3 +45,6 @@ app.post('/saveRecievedData', function (req, res){
 app.get('/proData', function (req, res){
     res.send(postData)
 })
+
+
+
