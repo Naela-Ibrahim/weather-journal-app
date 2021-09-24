@@ -34,17 +34,37 @@ async function doWhenClick (){
 
     // Extract temp data from external API data and use to create the objData
     const temperature = dataRecievedFromExApi.main.temp;
+
+    
     const objData = {
       date : newDate,
       temp : temperature,
       content : userFeel,
-      message : "Have a great day !"
+      
     }
-
-    console.log(objData)
     
-                           
-}
+    console.log(objData)
+
+ 
+    postData('/proData', {
+
+      date : newDate,
+    
+      temp : temperature,
+    
+      content : userFeel,
+    
+      
+    
+    } ).then(
+       ()=> {updateUI()}
+    )
+    
+    
+   
+  }
+                        
+
 
 // Fetch data and stringify it and send to server
 const postData = async ( url = '', projectData = {})=>{
@@ -56,12 +76,25 @@ const postData = async ( url = '', projectData = {})=>{
           'Content-Type': 'application/json',
       },
            
-      body: JSON.stringify(objData)
+      body: JSON.stringify(projectData)
     });
 
   }
 
-postData
+
+const updateUI = async () => {
+  const request = await fetch('/proData');
+  try{
+    const allData = await request.json();
+    document.getElementById('date').innerHTML = allData.date;
+    document.getElementById('temp').innerHTML = allData.temp;
+    document.getElementById('content').innerHTML = allData.content + "... " +  'Have a great day!';
+ 
+
+  }catch(error){
+    console.log("error", error);
+  }
+}
 
 
 

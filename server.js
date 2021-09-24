@@ -36,7 +36,7 @@ app.get('/proData', function (req, res){
 // https://classroom.udacity.com/nanodegrees/nd001-mena-nfp2/parts/5c546e88-361e-4c4d-8fbd-1ad6dee27810/modules/42f360ec-ea7d-4619-8780-882642a3edd3/lessons/710c6baf-41e9-4c9c-8ff3-d97763da566e/concepts/bfcd4972-22ff-47ff-9b2e-5453af288361
 // Add a POST route that adds incoming data to projectData
 app.post('/saveRecievedData', function (req, res){
-   req.body = projectData
+    projectData = req.body ;
     console.log(req.body)
     res.end()    
 })
@@ -45,6 +45,3 @@ app.post('/saveRecievedData', function (req, res){
 app.get('/proData', function (req, res){
     res.send(postData)
 })
-
-
-
