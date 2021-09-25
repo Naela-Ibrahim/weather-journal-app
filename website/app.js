@@ -3,7 +3,7 @@
 
 
 // My API key to get data from openweathermap API
-let myApiKey = '4f5f3648f8770e528fc0839350ab9d41';
+const myApiKey = '4f5f3648f8770e528fc0839350ab9d41';
 
 
 // Get the 'generate' button and store it in a variable
@@ -20,7 +20,7 @@ generateButton.addEventListener('click', doWhenClick)
 async function doWhenClick (){
     // Create a new date instance dynamically with JS
     let d = new Date();
-    let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+    let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 
     // Get values of zip and user feelings values  
     const zipCode = document.getElementById('zip').value;
