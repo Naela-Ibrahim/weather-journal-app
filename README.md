@@ -27,4 +27,6 @@ https://udacity.zoom.us/rec/play/FYD8mT7M-SgzsMQwmIzaZKCShh45L_4IqUHlcBEfGm2Gzte
 
 https://www.youtube.com/watch?v=-CZgW5ndSeQ&t=231s
 
+https://classroom.udacity.com/nanodegrees/nd001-mena-nfp2/parts/5c546e88-361e-4c4d-8fbd-1ad6dee27810/modules/42f360ec-ea7d-4619-8780-882642a3edd3/lessons/47a9fa8a-af7d-4701-81d4-3aa6966f07e0/concepts/527c00c8-3432-4384-9f8c-390e784e895d
+
 fwd community

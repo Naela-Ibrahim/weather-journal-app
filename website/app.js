@@ -3,7 +3,6 @@
 
 
 // My API key to get data from openweathermap API
-
 let myApiKey = '4f5f3648f8770e528fc0839350ab9d41';
 
 
@@ -35,17 +34,9 @@ async function doWhenClick (){
     // Extract temp data from external API data and use to create the objData
     const temperature = dataRecievedFromExApi.main.temp;
 
-    
-    const objData = {
-      date : newDate,
-      temp : temperature,
-      content : userFeel,
-      
-    }
-    
-    console.log(objData)
 
- 
+    // https://classroom.udacity.com/nanodegrees/nd001-mena-nfp2/parts/5c546e88-361e-4c4d-8fbd-1ad6dee27810/modules/42f360ec-ea7d-4619-8780-882642a3edd3/lessons/47a9fa8a-af7d-4701-81d4-3aa6966f07e0/concepts/527c00c8-3432-4384-9f8c-390e784e895d
+    // Post data to server then update UI
     postData('/proData', {
 
       date : newDate,
@@ -53,15 +44,11 @@ async function doWhenClick (){
       temp : temperature,
     
       content : userFeel,
-    
-      
-    
+     
     } ).then(
        ()=> {updateUI()}
     )
     
-    
-   
   }
                         
 
@@ -81,14 +68,15 @@ const postData = async ( url = '', projectData = {})=>{
 
   }
 
-
+// https://classroom.udacity.com/nanodegrees/nd001-mena-nfp2/parts/5c546e88-361e-4c4d-8fbd-1ad6dee27810/modules/42f360ec-ea7d-4619-8780-882642a3edd3/lessons/47a9fa8a-af7d-4701-81d4-3aa6966f07e0/concepts/527c00c8-3432-4384-9f8c-390e784e895d
+// Update UI
 const updateUI = async () => {
-  const request = await fetch('/proData');
+  const requestData = await fetch('/proData');
   try{
-    const allData = await request.json();
-    document.getElementById('date').innerHTML = allData.date;
-    document.getElementById('temp').innerHTML = allData.temp;
-    document.getElementById('content').innerHTML = allData.content + "... " +  'Have a great day!';
+    const proData = await requestData.json();
+    document.getElementById('date').innerHTML = proData.date;
+    document.getElementById('temp').innerHTML = proData.temp;
+    document.getElementById('content').innerHTML = proData.content + "... " +  'Have a great day!';
  
 
   }catch(error){
